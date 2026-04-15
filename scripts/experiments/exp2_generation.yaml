@@ -1,0 +1,51 @@
+# Generation config for Experiment 2 (Step 1)
+# 基于 verl/trainer/config/generation.yaml，针对实验二调整参数
+
+trainer:
+  nnodes: 1
+  n_gpus_per_node: 8
+
+data:
+  path: null  # 由 run_exp2.sh 覆盖
+  prompt_key: prompt
+  n_samples: 1
+  output_path: null  # 由 run_exp2.sh 覆盖
+  batch_size: 64
+
+model:
+  path: null  # 由 run_exp2.sh 覆盖
+  external_lib: null
+
+rollout:
+  name: vllm
+  temperature: 0.6
+  top_k: -1
+  top_p: 0.95
+  prompt_length: 2048
+  response_length: 4096
+  dtype: bfloat16
+  gpu_memory_utilization: 0.7
+  ignore_eos: False
+  enforce_eager: False
+  free_cache_engine: False
+  load_format: dummy_dtensor
+  tensor_model_parallel_size: 1
+  max_num_batched_tokens: 16384
+  max_model_len: null
+  max_num_seqs: 256
+  log_prob_micro_batch_size: null
+  log_prob_micro_batch_size_per_gpu: 8
+  use_fire_sampling: False
+  do_sample: True
+  disable_log_stats: True
+  enable_chunked_prefill: False
+  n: 1
+
+actor:
+  strategy: fsdp
+  ulysses_sequence_parallel_size: 1
+  fsdp_config:
+    fsdp_size: -1
+
+ray_init:
+  num_cpus: null
