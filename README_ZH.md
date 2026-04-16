@@ -2,6 +2,8 @@
 
 SCOPE: Signal-Calibrated On-Policy Distillation Enhancement with Dual-Path Adaptive Weighting
 
+📑 [论文](https://arxiv.org/pdf/2604.10688)
+
 ## 项目概述
 
 SCOPE 是一个双路径自适应训练框架，将在线蒸馏中的轨迹按正确性分为两条互补的监督路径：

@@ -2,6 +2,8 @@
 
 SCOPE: Signal-Calibrated On-Policy Distillation Enhancement with Dual-Path Adaptive Weighting
 
+📑 [Paper](https://arxiv.org/pdf/2604.10688)
+
 ## Overview
 
 SCOPE is a dual-path adaptive training framework for on-policy distillation that routes rollouts by correctness into two complementary supervision paths:
