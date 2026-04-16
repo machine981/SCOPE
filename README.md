@@ -36,11 +36,11 @@ bash deploy_vllm.sh
 
 **Key configurations in `deploy_vllm.sh`**:
 
-| Parameter              | Description            | Default                            |
-| ---------------------- | ---------------------- | ---------------------------------- |
-| `model_name_or_path` | Model path             | `./Models/Skywork-OR1-7B`        |
-| `served_model_name`  | Model name in API      | `Skywork-OR1-7B`                 |
-| `--api-key`          | API authentication key | `xxx` (must match api_interface) |
+| Parameter              | Description            | Default                                        |
+| ---------------------- | ---------------------- | ---------------------------------------------- |
+| `model_name_or_path` | Model path             | `./Models/Skywork-OR1-7B`                        |
+| `served_model_name`  | Model name in API      | `Skywork-OR1-7B`                                 |
+| `--api-key`          | API authentication key | `xxx` (must match `verl/utils/api_interface.py`) |
 
 ### 2. Configure Experiment Scripts
 
@@ -52,9 +52,7 @@ IP_POOL="['xx.xxx.x.xx','...']"    # VLLM service node IP list
 ```
 
 **API Key Consistency**: The `--api-key` in `deploy_vllm.sh` must match the `api_key` in:
-
-- `scripts/experiments/exp2_teacher_hallucination.py`
-- `scripts/experiments/exp1_teacher_avg4.py`
+- `verl/utils/api_interface.py`
 
 ### 3. Run Training
 
