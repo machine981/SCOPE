@@ -4,6 +4,7 @@ SCOPE: Signal-Calibrated On-Policy Distillation Enhancement with Dual-Path Adapt
 
 <div align="center">
   <a href='https://arxiv.org/pdf/2604.10688'><img src='https://img.shields.io/badge/arXiv-2604.10688-red?logo=arXiv'></a>  &nbsp;
+  <a href="https://huggingface.co/papers/2604.10688"><img src='https://img.shields.io/badge/HuggingFace-SCOPE-FF9B9E?logo=huggingface'></img></a>  &nbsp;
   <a href="https://github.com/machine981/SCOPE"><img src="https://img.shields.io/badge/GitHub-SCOPE-94c320?logo=github"></a> &nbsp;
   <br>
 </div>
