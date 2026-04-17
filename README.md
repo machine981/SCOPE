@@ -16,13 +16,36 @@ SCOPE: Signal-Calibrated On-Policy Distillation Enhancement with Dual-Path Adapt
 
 - **[2026.04]** Paper released on arXiv!
 
+## 📖 Overview
+
+On-Policy Distillation (OPD) alleviates alignment gaps by introducing dense, token-level KL supervision from a teacher model, but typically applies this supervision uniformly across all rollouts, ignoring fundamental differences in signal quality.
+
+**Existing OPD Limitations:**
+- **Diversity degradation**: Correct paths are reinforced equally, reducing exploration at the capability boundary
+- **Rectification inefficiency**: Noisy teacher signals mislead incorrect trajectories
+
+**SCOPE Solution:**
+We propose Signal-Calibrated On-Policy Distillation Enhancement (SCOPE), a dual-path adaptive training framework that routes on-policy rollouts by correctness into two complementary supervision paths.
+
+---
+
+## 📝 Abstract
+
+On-Policy Distillation (OPD) alleviates this by introducing dense, token-level KL supervision from a teacher model, but typically applies this supervision uniformly across all rollouts, ignoring fundamental differences in signal quality. We propose Signal-Calibrated On-Policy Distillation Enhancement (SCOPE), a dual-path adaptive training framework that routes on-policy rollouts by correctness into two complementary supervision paths. For incorrect trajectories, SCOPE performs teacher-perplexity-weighted KL distillation to prioritize instances where the teacher demonstrates genuine corrective capability, while down-weighting unreliable guidance. For correct trajectories, it applies student-perplexity-weighted MLE to concentrate reinforcement on low-confidence samples at the capability boundary rather than over-reinforcing already mastered ones. Both paths employ a group-level normalization to adaptively calibrate weight distributions, accounting for the intrinsic difficulty variance across prompts. Extensive experiments on six reasoning benchmarks show that SCOPE achieves an average relative improvement of 11.42% in Avg@32 and 7.30% in Pass@32 over competitive baselines, demonstrating its consistent effectiveness.
+
+---
+
+## 🏆 Key Contributions
+
+- **Empirical analysis of signal quality heterogeneity in OPD:** Uncovers that teacher and student perplexity reliably predict corrective capability on incorrect trajectories and capability-boundary samples on correct ones.
+
+- **The SCOPE dual-path adaptive framework:** Routes rollouts by correctness, directing incorrect trajectories to teacher-perplexity-weighted OPD and correct trajectories to student-perplexity-weighted MLE.
+
+- **Extensive experimental validation:** Achieves 11.42% Avg@32 and 7.30% Pass@32 relative improvement over baselines on six reasoning benchmarks.
+
+---
+
 ## 📖 Method
-
-### Motivation
-
-On-policy distillation (OPD) suffers from **signal quality heterogeneity** — the same teacher signal has varying reliability across different trajectories. Standard OPD treats all trajectories uniformly, leading to:
-- **Diversity degradation**: Correct paths reinforced equally, reducing exploration
-- **Rectification inefficiency**: Noisy teacher signals misleading incorrect paths
 
 ### SCOPE Framework
 
@@ -33,9 +56,29 @@ SCOPE is a dual-path adaptive training framework that routes on-policy rollouts 
 | **Student Path** | Correct (Ω_c) | Perplexity-weighted MLE | Reinforce unconventional valid paths at capability boundary |
 | **Teacher Path** | Incorrect (Ω_w) | Perplexity-weighted KL distillation | Filter out context-induced noise, prioritize reliable guidance |
 
+### Weight Formulation
+
+**Student-guided weight (for correct trajectories Ω_c):**
+
+$$w_i^{stu} = \frac{\text{PPL}_S(y_i|x)^{1/\tau}}{\sum_{j \in \Omega_c} \text{PPL}_S(y_j|x)^{1/\tau}}$$
+
+Amplifies "unconventional valid paths" at the capability boundary using perplexity-based weighting.
+
+**Teacher-guided weight (for incorrect trajectories Ω_w):**
+
+$$w_i^{tea} = \frac{\text{PPL}_T(y_i|x)^{-1/\tau}}{\sum_{j \in \Omega_w} \text{PPL}_T(y_j|x)^{-1/\tau}}$$
+
+Filters "context-induced noise" by down-weighting high teacher perplexity instances.
+
 ### Key Insight
 
-Within each prompt's trajectory group, SCOPE applies **group-level perplexity-based weighting** to amplify samples where the model is less confident (higher perplexity), addressing the diverse signal quality problem.
+Within each prompt's trajectory group, SCOPE applies **group-level perplexity-based normalization** to adaptively calibrate weight distributions, accounting for the intrinsic difficulty variance across prompts.
+
+### Overall Objective
+
+The combined SCOPE objective jointly optimizes:
+
+$$\mathcal{L}_{SCOPE} = \sum_{i \in \Omega_c} w_i^{stu} \cdot \mathcal{L}_{MLE} + \sum_{i \in \Omega_w} w_i^{tea} \cdot \mathcal{L}_{OPD}$$
 
 ---
 
