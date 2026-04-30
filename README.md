@@ -16,8 +16,8 @@ SCOPE: Signal-Calibrated On-Policy Distillation Enhancement with Dual-Path Adapt
 ## 🔥 News
 
 - **[2026.04]** SCOPE model weights released on Hugging Face!
-  - <a href="https://huggingface.co/Machine981/SCOPE-Qwen3-1.7B"><img src="https://img.shields.io/badge/HuggingFace-SCOPE--Qwen3--1.7B-FF9B9E?logo=huggingface"></a>
-  - <a href="https://huggingface.co/Machine981/SCOPE-Deepseek-R1-Distill-Qwen-1.5B"><img src="https://img.shields.io/badge/HuggingFace-SCOPE--Deepseek--R1--Distill--Qwen--1.5B-FF9B9E?logo=huggingface"></a>
+  - 🤗 [SCOPE-Qwen3-1.7B](https://huggingface.co/Machine981/SCOPE-Qwen3-1.7B)
+  - 🤗 [SCOPE-Deepseek-R1-Distill-Qwen-1.5B](https://huggingface.co/Machine981/SCOPE-Deepseek-R1-Distill-Qwen-1.5B)
 - **[2026.04]** Paper released on arXiv!
 
 ## 📖 Overview

@@ -16,8 +16,8 @@ SCOPE: Signal-Calibrated On-Policy Distillation Enhancement with Dual-Path Adapt
 ## 🔥 新闻
 
 - **[2026.04]** SCOPE 模型权重已发布！
-  - <a href="https://huggingface.co/Machine981/SCOPE-Qwen3-1.7B"><img src="https://img.shields.io/badge/HuggingFace-SC--OPE--Qwen3--1.7B-FF9B9E?logo=huggingface"></a>
-  - <a href="https://huggingface.co/Machine981/SCOPE-Deepseek-R1-Distill-Qwen-1.5B"><img src="https://img.shields.io/badge/HuggingFace-SC--OPE--Deepseek--R1--Distill--Qwen--1.5B-FF9B9E?logo=huggingface"></a>
+  - 🤗 [SCOPE-Qwen3-1.7B](https://huggingface.co/Machine981/SCOPE-Qwen3-1.7B)
+  - 🤗 [SCOPE-Deepseek-R1-Distill-Qwen-1.5B](https://huggingface.co/Machine981/SCOPE-Deepseek-R1-Distill-Qwen-1.5B)
 - **[2026.04]** 论文已在 arXiv 发布！
 
 ---
