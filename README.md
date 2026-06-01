@@ -108,7 +108,14 @@ $$\mathcal{L}_{SCOPE} = \sum_{i \in \Omega_c} w_i^{stu} \cdot \mathcal{L}_{MLE} 
 
 ## ⚡ Quick Start
 
-### 1. Deploy VLLM Service
+### 1. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+pip install -e .  # install verl itself
+```
+
+### 2. Deploy VLLM Service
 
 ```bash
 bash deploy_vllm.sh
@@ -122,7 +129,7 @@ bash deploy_vllm.sh
 | `served_model_name` | Model name in API | `Skywork-OR1-7B` |
 | `--api-key` | API authentication key | `xxx` (must match `verl/utils/api_interface.py`) |
 
-### 2. Configure Experiment Scripts
+### 3. Configure Experiment Scripts
 
 Set the following in `run_experiment_distill_1_5b.sh`:
 
@@ -133,7 +140,7 @@ IP_POOL="['xx.xxx.x.xx','...']"    # VLLM service node IP list
 
 **API Key Consistency**: The `--api-key` in `deploy_vllm.sh` must match the `api_key` in `verl/utils/api_interface.py`.
 
-### 3. Run Training
+### 4. Run Training
 
 ```bash
 bash run_experiment_distill_1_5b.sh
